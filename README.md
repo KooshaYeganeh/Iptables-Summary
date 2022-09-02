@@ -144,5 +144,52 @@ sudo iptables -t raw -A PREROUTING -p icmp --icmp-type 8 -l DROP
 sudo iptables -t mangle -A PREROUTING -m conntrack --ctstate INVALID -j DROP
 ```
 
+### Set Rules For new VPS for web Hosting
+
+```
+sudo iptables -A INPUT -i enp1s0 -p tcp -m multiport ! --dport 22,80,443 -j REJECT
+```  
+```
+sudo iptables -A INPUT -i enp1s0 -p tcp ! --syn -m state --state NEW -j DROP
+```  
+```
+sudo iptables -A INPUT -i enp1s0 -p tcp -m state --state ESTABLISHED,RELATED -j ACCEPT
+```  
+```
+sudo iptables -A OUTPUT -o enp1s0 -p tcp -m multiport --sport 22,80,443 -j ACCEPT
+```  
+```
+sudo iptables -A INPUT -i enp1s0 -p tcp --tcp-flags ALL NONE -j DROP
+```  
+```
+sudo iptables -A INPUT -i enp1s0 -p tcp --tcp-flags PSH,URG,FIN PSH,URG,FIN -j REJECT
+```  
+```
+sudo iptables -A INPUT -p tcp -m state --state INVALID -j DROP
+```  
+```
+sudo iptables -A INPUT -p tcp -m connlimit --connlimit-above 100 -j DROP
+```  
+```
+sudo iptables -A INPUT -f -j DROP
+```  
+```
+sudo iptables -A INPUT -p icmp --icmp-type 8 -j DROP
+```  
+```
+sudo iptables -A INPUT -p icmp --icmp-type 13 -j DROP
+```  
+```
+sudo iptables -A INPUT -p icmp --icmp-type 14 -j DROP
+```  
+```
+sudo iptables -A INPUT -i enp1s0 -p tcp --syn -m limit --limit 100/minute --limit-burst 80 -j DROP
+```  
+```
+sudp iptables -P INPUT DROP
+```  
+```
+sudo iptables -p OUTPUT DROP
+```
 
 
