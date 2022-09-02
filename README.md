@@ -2,9 +2,7 @@
 ## INFO
 
 Iptables, ip6tables are used to maintain packet filter rules in the Linux kernel.
-```diff
 *Note:iptables is Not Service.iptables is Mechanism You can work with net Filter in Kernel*
-```
 
 ![image](./iptables_info.png)
 
@@ -33,9 +31,7 @@ Iptables, ip6tables are used to maintain packet filter rules in the Linux kernel
 **-o -> output bound**
 **-N -> create New chain**
 **-X -> Delete chain**
-```diff
 *Note : in Interface switch you can use any for all Interfaces*
-```
 **-s or --source -> source ip**
 **-d or --destination -> destination ip**
 **-p -> protocol**
@@ -45,5 +41,7 @@ Iptables, ip6tables are used to maintain packet filter rules in the Linux kernel
 
 ### Basic Examples
 
+```
 **➜  ~ sudo iptables -A INPUT -i enps0 -p tcp --source 192.168.1.105 --dport 80 -j DROP**
+```
 **➜  ~ sudo iptables -A INPUT -i enps0 -p tcp --source 92.168.1.102 --sport 80 --destination 192.168.1.102 --dport 80 -j DROP**
