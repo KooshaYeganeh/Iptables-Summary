@@ -6,7 +6,7 @@ Iptables, ip6tables are used to maintain packet filter rules in the Linux kernel
 *Note:iptables is Not Service.iptables is Mechanism You can work with net Filter in Kernel*
 ```
 
-![image](ptables_info.png)
+![image](./iptables_info.png)
 
 
 1- The First thing to do is to check if Iptables is running on the system. Iptables is running as a kernel module so it can’t be seen as one of the normal processes.
